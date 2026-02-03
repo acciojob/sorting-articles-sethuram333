@@ -1,7 +1,3 @@
-//your JS code here. If required.
-
-// your JS code here. If required.
-
 const bands = [
   'The Plot in You',
   'The Devil Wears Prada',
@@ -18,21 +14,21 @@ const bands = [
   'An Old Dog'
 ];
 
-// function to remove articles
-function stripArticle(name) {
-  return name.replace(/^(a |an |the )/i, '').trim();
+function stripArticle(str) {
+  return str.replace(/^(a |an |the )/i, '').toLowerCase();
 }
 
-// sort bands
-const sortedBands = bands.sort((a, b) => {
-  return stripArticle(a).localeCompare(stripArticle(b));
+// create a copy before sorting
+const sortedBands = [...bands].sort((a, b) => {
+  if (stripArticle(a) < stripArticle(b)) return -1;
+  if (stripArticle(a) > stripArticle(b)) return 1;
+  return 0;
 });
 
-// add to DOM
-const ul = document.getElementById('band');
+const ul = document.getElementById("band");
 
 sortedBands.forEach(band => {
-  const li = document.createElement('li');
+  const li = document.createElement("li");
   li.textContent = band;
   ul.appendChild(li);
 });
