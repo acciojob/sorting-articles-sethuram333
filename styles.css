@@ -6,6 +6,6 @@ body {
 }
 
 li {
-	list-style: none;
+	list-style-type:square;
 	margin: 6px 0;
 }
