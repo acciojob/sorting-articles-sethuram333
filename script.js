@@ -14,20 +14,23 @@ const bands = [
   'An Old Dog'
 ];
 
-function stripArticle(bandName) {
-  return bandName.replace(/^(a |an |the )/i, '');
+function stripArticle(name) {
+  return name.replace(/^(a |an |the )/i, '').trim();
 }
 
-const sortedBands = bands.slice().sort((a, b) =>
-  stripArticle(a).localeCompare(stripArticle(b), undefined, {
-    sensitivity: 'base'
-  })
-);
+const sortedBands = bands.sort((a, b) => {
+  const nameA = stripArticle(a).toLowerCase();
+  const nameB = stripArticle(b).toLowerCase();
+
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  return 0;
+});
 
 const ul = document.getElementById('band');
 
 sortedBands.forEach(band => {
   const li = document.createElement('li');
-  li.innerText = band;
+  li.textContent = band;
   ul.appendChild(li);
 });
